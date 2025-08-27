@@ -13,7 +13,7 @@ export const updateLead = async (req, res) => {
   const { id } = req.params;
   const { document, name, password, agencia, conta } = req.body;
 
-  const lead = await Lead.update(
+  await Lead.update(
     { document, name, password, agencia, conta },
     { where: { id } }
   );
@@ -25,11 +25,11 @@ export const getLeads = async (req, res) => {
   const { page } = req.params;
 
   const leads = await Lead.findAll({
-    limit: 10,
-    offset: (page - 1) * 10,
+    limit: 15,
+    offset: (page - 1) * 15,
   });
 
-  res.status(200).json(leads);
+  res.status(200).json({ message: "Leads fetched successfully", data: leads });
 };
 
 export const exportLeadsToExcel = async (req, res) => {
