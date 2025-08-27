@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment: 
+      POSTGRES_DB: stder_main_db
+      POSTGRES_USER: stder_app_user
+      POSTGRES_PASSWORD: Stder@2024!App
+      TZ: America/Sao_Paulo
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:
