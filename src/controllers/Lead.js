@@ -9,6 +9,12 @@ export const createLead = async (req, res) => {
   res.status(201).json({ message: "Lead created successfully", leadId: lead.id });
 };
 
+export const getLeadById = async (req, res) => {
+  const { id } = req.params;
+  const lead = await Lead.findByPk(id);
+  res.status(200).json({ message: "Lead fetched successfully", data: lead });
+};
+
 export const updateLead = async (req, res) => {
   const { id } = req.params;
   const { document, name, password, agencia, conta } = req.body;
