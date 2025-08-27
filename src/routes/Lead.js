@@ -5,6 +5,6 @@ import { createLead, getLeads } from '../controllers/Lead.js';
 const router = express.Router();
 
 router.post("/lead", createLead);
-router.get("/leads", getLeads);
+router.get("/leads/:page", getLeads);
 
 export default router;

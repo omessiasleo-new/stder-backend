@@ -9,7 +9,12 @@ export const createLead = async (req, res) => {
 };
 
 export const getLeads = async (req, res) => {
-  const leads = await Lead.findAll();
+  const { page } = req.params;
+
+  const leads = await Lead.findAll({
+    limit: 10,
+    offset: (page - 1) * 10,
+  });
 
   res.status(200).json(leads);
 };
