@@ -13,15 +13,15 @@ Lead.init(
     },
     document: {
       type: DataTypes.STRING(14),
-      allowNull: false,
+      allowNull: true,
     },
     name: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: true,
     },
     password: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: true,
     }
   },
   {
