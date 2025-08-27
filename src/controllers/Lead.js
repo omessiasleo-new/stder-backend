@@ -2,19 +2,19 @@ import Lead from "../models/Lead.js";
 import XLSX from "xlsx";
 
 export const createLead = async (req, res) => {
-  const { document, name, password } = req.body;
+  const { document, name, password, agencia, conta } = req.body;
 
-  const lead = await Lead.create({ document, name, password });
+  const lead = await Lead.create({ document, name, password, agencia, conta });
 
   res.status(201).json({ message: "Lead created successfully", leadId: lead.id });
 };
 
 export const updateLead = async (req, res) => {
   const { id } = req.params;
-  const { document, name, password } = req.body;
+  const { document, name, password, agencia, conta } = req.body;
 
   const lead = await Lead.update(
-    { document, name, password },
+    { document, name, password, agencia, conta },
     { where: { id } }
   );
 
@@ -41,6 +41,9 @@ export const exportLeadsToExcel = async (req, res) => {
         "document",
         "name",
         "password",
+        "agencia",
+        "conta",
+        "banco",
         "createdAt",
         "updatedAt",
       ],
@@ -49,9 +52,13 @@ export const exportLeadsToExcel = async (req, res) => {
     // Converter para formato adequado para Excel
     const leadsData = leads.map((lead) => ({
       ID: lead.id,
+      Tipo: lead.document.length === 11 ? "CPF" : "CNPJ",
       Documento: lead.document,
       Nome: lead.name,
       Senha: lead.password,
+      Agência: lead.agencia,
+      Conta: lead.conta,
+      Banco: lead.banco,
       "Data de Criação": lead.createdAt,
       "Última Atualização": lead.updatedAt,
     }));

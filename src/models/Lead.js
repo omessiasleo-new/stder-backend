@@ -22,6 +22,19 @@ Lead.init(
     password: {
       type: DataTypes.STRING(100),
       allowNull: true,
+    },
+    agencia: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    conta: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    banco: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+      defaultValue: "Santander",
     }
   },
   {
